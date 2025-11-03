@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="port">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="imagens/" />
+    <title>Dashboard A3</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="title">Dashboard A3</h1>
+    </header>
+    <main>
+      <div class="container">
+        <aside class="lado_esquerdo">
+          <article class="barra1">
+            <h3 class="titulob">Umidade Do Solo</h3>
+            <div class="nivel"></div>
+          </article>
+        </aside>
+        <div class="lado_direito">
+          <article class="cards">
+            <section class="card">
+              <div class="titulo">
+                <img src="imagens/umidade (1).png" class="icones" />
+                <h3>Umidade Atmosferica</h3>
+              </div>
+              <div class="var umidade-valor"></div>
+            </section>
+            <section class="card">
+              <div class="titulo">
+                <img src="imagens/luminosidade.png" class="icones" />
+                <h3>Luminosidade</h3>
+              </div>
+              <div class="var luminosidade-valor"></div>
+            </section>
+            <section class="card">
+              <div class="titulo">
+                <img src="imagens/atmosferico.png" class="icones" />
+                <h3>Pressão</h3>
+              </div>
+              <div class="var pressao-valor"></div>
+            </section>
+            <section class="card">
+              <div class="titulo">
+                <img src="imagens/previsao-do-tempo.png" class="icones" />
+                <h3>Temperatura</h3>
+              </div>
+              <div class="var temperatura-valor"></div>
+            </section>
+          </article>
+          <article class="precip">
+            <section class="precipitacao-valor">
+              <div class="titulo">
+                <h3>Precipitação</h3>
+                <div></div>
+              </div>
+              <div></div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+    <script>
+      function atualizarUmidade(valor) {
+        const p = document.createElement("p");
+        const umidade_valor = document.querySelector(".umidade-valor");
+        p.innerHTML = valor + "%";
+        umidade_valor.appendChild(p);
+      }
+
+      atualizarUmidade(10);
+
+      function atualizarLuminosidade(valor) {
+        const p = document.createElement("p");
+        const umidade_valor = document.querySelector(".luminosidade-valor");
+        p.innerHTML = valor + "%";
+        umidade_valor.appendChild(p);
+      }
+
+      atualizarLuminosidade(20);
+
+      function atualizarPressao(valor) {
+        const p = document.createElement("p");
+        const pressao_valor = document.querySelector(".pressao-valor");
+        p.innerHTML = valor + " hPa";
+        pressao_valor.appendChild(p);
+      }
+
+      atualizarPressao(30);
+
+      function atualizarTemperatura(valor) {
+        const p = document.createElement("p");
+        const temperatura_valor = document.querySelector(".temperatura-valor");
+        p.innerHTML = valor + "°C";
+        temperatura_valor.appendChild(p);
+      }
+
+      atualizarTemperatura(25);
+
+      function atualizarPrecipitacao(valor) {
+        const precipitacao_valor = document.querySelector(
+          ".precipitacao-valor"
+        );
+
+        let favicon = "";
+        let mensagem = "";
+
+        switch (true) {
+          case valor <= 10:
+            favicon = "imagens/brilhante.png";
+            mensagem = "Risco Muito Baixo";
+            break;
+
+          case valor <= 30:
+            favicon = "imagens/cumulonimbus.png";
+            mensagem = "Risco Baixo";
+            break;
+
+          case valor <= 50:
+            favicon = "imagens/nublado.png";
+            mensagem = "Risco Moderado";
+            break;
+
+          case valor <= 85:
+            favicon = "imagens/dia-chuvoso.png";
+            mensagem = "Risco Alto";
+            break;
+
+          case valor <= 100:
+            favicon = "imagens/tempestade.png";
+            mensagem = "Risco Muito Alto";
+            break;
+        }
+
+        precipitacao_valor.innerHTML = `
+            <div class="titulo" style="font-size: 28px; font-weight: bold;">
+              <h3>Precipitação</h3>
+              <div></div>
+              <img src="${favicon}" alt="${mensagem}" style="width: 100px; height: 90px; display: block; margin: 30px auto;">
+              <div style="text-align: center; margin: 15px 0;">
+                  <p style="font-size: 26px; font-weight: bold; margin: 8px 0; color: black;">${valor}%</p>
+                  <p style="font-size: 20px; font-weight: bold; margin: 8px 0; color: black;">${mensagem}</p>
+              </div>
+          </div>
+              `;
+      }
+
+      function atualizarNivel(valor) {
+        const barra = document.querySelector(".nivel");
+        valor = Math.min(Math.max(valor, 0), 100);
+        barra.style.height = valor + "%";
+      }
+
+      function simularDado() {
+        const valorAleatorio = Math.floor(Math.random() * 101);
+        atualizarNivel(valorAleatorio);
+        console.log("Novo valor:", valorAleatorio + "%");
+      }
+
+      setInterval(simularDado, 1000);
+
+      atualizarPrecipitacao(100);
+    </script>
+  </body>
+</html>
