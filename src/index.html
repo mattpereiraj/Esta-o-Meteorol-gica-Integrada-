@@ -37,13 +37,6 @@
             </section>
             <section class="card">
               <div class="titulo">
-                <img src="imagens/atmosferico.png" class="icones" />
-                <h3>Pressão</h3>
-              </div>
-              <div class="var pressao-valor"></div>
-            </section>
-            <section class="card">
-              <div class="titulo">
                 <img src="imagens/previsao-do-tempo.png" class="icones" />
                 <h3>Temperatura</h3>
               </div>
@@ -80,15 +73,6 @@
       }
 
       atualizarLuminosidade(20);
-
-      function atualizarPressao(valor) {
-        const p = document.createElement("p");
-        const pressao_valor = document.querySelector(".pressao-valor");
-        p.innerHTML = valor + " hPa";
-        pressao_valor.appendChild(p);
-      }
-
-      atualizarPressao(30);
 
       function atualizarTemperatura(valor) {
         const p = document.createElement("p");
